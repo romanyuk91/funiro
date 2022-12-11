@@ -1,0 +1,191 @@
+.products {
+    @include adaptive-value ("padding-bottom", 44, 30, 1);
+
+    &-title {
+        @include adaptive-value ("margin-bottom", 32, 25, 1);
+    }
+
+    &-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+        column-gap: 15px;
+        row-gap: 25px;
+    }
+
+    &-item {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        background-color: #f4f5f7;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        // &:hover,
+        // &:focus,
+        // &:active {
+        //     .products-item-actions {
+        //         opacity: 1;
+        //         visibility: visible;
+        //     }
+        // }
+
+        @media (any-hover: hover) {
+            &:hover {
+                .products-item-actions {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+        }
+
+        &-labels {
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            pointer-events: none;
+            position: absolute;
+            @include adaptive-value ("right", 24, 10, 1);
+            @include adaptive-value ("top", 24, 10, 1);
+        } 
+
+        &-label {
+            flex: 0 0 48px;
+            width: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-weight: 500;
+            border-radius: 50%;
+            &:not(:last-child) {
+                margin-bottom: 10px;
+            }
+
+            &-sale {
+                background-color: #e97171;
+            }
+            &-new {
+                background-color: #2ec1ac;
+            }
+        }
+
+        &-image {
+            img {
+                width: 100%;
+            }
+            
+        }
+
+        &-body {
+            flex: 1 1 auto;
+            padding: 16px 16px 30px 16px;
+            display: flex;
+            flex-direction: column;
+            
+        }
+
+        &-content {
+            flex: 1 1 auto;
+        }
+
+        &-title {
+            @include adaptive-value ("font-size", 24, 18, 1);
+            font-weight: 600;
+            line-height: 120%;
+            margin-bottom: 8px;
+        }
+
+        &-text {
+            font-weight: 500;
+            @include adaptive-value ("font-size", 16, 14, 1);
+            line-height: 150%;
+            color: $grayColor;
+        }
+
+        &-prices {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            line-height: 150%;
+        }
+
+        &-price {
+            font-weight: 600;
+            @include adaptive-value ("font-size", 20, 14, 1);
+
+            &-old {
+                font-weight: normal;
+                @include adaptive-value ("font-size", 16, 12, 1); 
+                margin-left: 16px;
+                color: #b0b0b0;
+                text-decoration: line-through;
+            }
+        }
+
+        &-actions {
+            @media (any-hover: none) {
+                padding: 15px 0px 0px 0px;
+            }
+
+            @media (any-hover: hover) {
+                opacity: 0;
+                visibility: hidden;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 3;
+                transition: all 0.3s ease;
+                background-color: rgba(58, 58, 58, 0.74);
+                }
+        }
+    }
+
+    &-footer {
+        padding-top: 32px;
+        text-align: center;
+    }
+
+    &-button-more {
+        border: 1px solid $orangeColor;
+        min-width: 245px;
+    }
+}
+
+.actions-product {
+    &-body {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    &-button {
+        flex: 1 1 100%;
+
+        &:not(:last-child) {
+            margin-bottom: 24px;
+        }
+    }
+
+    &-link {
+        display: flex;
+        align-items: center;
+        color: inherit;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        &::before {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        @media (any-hover: hover) {
+            color: #fff;
+            &:hover {
+                color: $orangeColor;
+            }
+        }
+    }
+}

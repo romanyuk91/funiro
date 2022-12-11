@@ -1,0 +1,305 @@
+.hero {
+    background-color: #fcf8f3;
+
+    &-container {
+        position: relative;
+        @media (min-width: $md2) {
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 376px;
+                width: 100vw;
+                height: 100%;
+                background-color: #f9f1e7;
+            }
+        }
+    }
+
+    &-body {
+        padding-top: 140px;
+        position: relative;
+        z-index: 2;
+
+        @media (max-width: $md2) {
+            padding-top: 80px;
+        }
+
+        @media (max-width: $md3) {
+            padding-top: 50px;
+        }
+
+        @media (min-width: $md2) {
+            display: flex;
+        }
+    }
+
+    // hero-content
+    &-content {
+        flex: 0 0 calc(494 / 1210 * 100%);
+        align-self: flex-start;
+        padding-left: 15px;
+        padding-right: 15px;
+        z-index: 5;
+        @include adaptive-value("padding-top", 60, 15, 1);
+        @include adaptive-value("padding-bottom", 60, 15, 1);
+        @include adaptive-value("margin-bottom", 80, 15, 1);
+        background-color: rgba(255, 255, 255, 0.72);
+        @supports ((-webkit-backdrop-filter: blur(31px)) or (backdrop-filter: blur(31px))) {
+			background: rgba(255, 255, 255, 0.72);
+			backdrop-filter: blur(31px);
+		}
+
+        @media (min-width: $md2) {
+            @include adaptive-value("padding", 60, 1, 1);
+        }
+
+        @media (max-width: $md2) {
+            margin: 30px -15px 10px;
+        }
+
+        &-title {
+            @include adaptive-value("font-size", 56, 24, 1);
+            font-weight: 700;
+            line-height: 120%;
+            color: $mainColor;
+            @include adaptive-value("margin-bottom", 16, 8, 1);
+        }
+
+        &-text {
+            @include adaptive-value("font-size", 20, 16, 1);
+            font-weight: 500;
+            line-height: 150%;
+            color: $grayColor;
+            @include adaptive-value("margin-bottom", 48, 20, 1);
+        }
+
+        &-button {
+            @include adaptive-value ("min-height", 78, 48, 1);
+            @include adaptive-value("font-size", 20, 16, 1);
+            font-weight: 600;
+            color: #fff;
+            background-color: $orangeColor;
+            width: 100%;
+            &:hover,
+            &:focus,
+            &:active {
+                background-color: #a87a5e;
+            }
+        }
+    }
+
+    &-slider {
+        flex: 1 1 auto;
+        min-width: 0;
+        align-self: flex-end;
+        @media (min-width: $md2) {
+            padding-left: 32px;
+        }
+
+        &-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            z-index: 5;
+
+            &-dotts {
+                @media (max-width: $md2) {
+                    justify-content: center;
+                }
+            }
+        }
+
+        &-body {
+            overflow: visible;
+            @include adaptive-value("width", 934, 290, 1);
+
+        }
+    }
+
+    &-slide {
+        position: relative;
+
+        &-content {
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            min-width: 295px;
+            max-height: 300px;
+            overflow: auto;
+            @include adaptive-value("padding", 24, 15, 1);
+            background-color: rgba(255, 255, 255, 0.72);
+
+            @media(min-width: $md3) {
+                position: absolute;
+                @include adaptive-value("left", 40, 0, 1);
+                @include adaptive-value("bottom", 40, 0, 1);
+            }
+
+            &:hover,
+            &:focus,
+            &:active {
+                animation: priceMove 1s ease 1;
+            }
+
+            @keyframes priceMove {
+                0% {
+                    transform: scale(1);
+                }
+
+                33% {
+                    transform: scale(0.9);
+                }
+
+                66% {
+                    transform: scale(1.1);
+                    background-color: rgba(255, 255, 255, 1);
+                }
+
+                100% {
+                    transform: scale(1);
+                    background-color: rgba(255, 255, 255, 0.72);
+                }
+            }
+
+            &-title {
+                font-weight: 600;
+                @include adaptive-value("font-size", 28, 18, 1);
+                line-height: 120%;
+                color: $mainColor;
+            }
+
+            &-text {
+                margin: 4px 0 8px;
+                font-weight: 500;
+                font-size: 16px;
+                @include adaptive-value("font-size", 16, 12, 1);
+                line-height: 150%;
+                color: $grayColor;
+            }
+
+            &-price {
+                display: flex;
+                flex-direction: row-reverse;
+                justify-content: space-between;
+                align-items: center;
+                font-weight: 600;
+                @include adaptive-value("font-size", 20, 14, 1);
+                line-height: 150%;
+                color: $mainColor;
+                
+                &::before {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
+
+
+// hero-slider-controls
+
+.slider-arrows {
+    display: grid;
+    grid-template-columns: repeat(2, 48px);
+    column-gap: 8px;
+
+    @media (max-width: $md2) {
+        display: none;
+    }
+}
+
+.slider-arrow {
+    height: 48px;
+    width: 48px;
+    font-size: 12px;
+    border-radius: 50%;
+    color: $orangeColor;
+    background-color: rgba(232, 159, 113, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &-prev {
+        &::before {
+            transform: rotate(90deg);
+        }
+    }
+
+    &-next {
+        &::before {
+            transform: rotate(-90deg);
+        }
+    }
+
+    &-white {
+		box-shadow: 0px 4px 14px 1px rgba(0, 0, 0, 0.16);
+		background-color: #fff;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: $orangeColor;
+            color: #fff;
+        }
+		
+	}
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: #fff;
+        background-color: rgba(232, 159, 113, 1);
+    }
+}
+
+.swiper-pagination-bullets {
+    display: flex;
+    column-gap: 12px;
+    flex-wrap: wrap;
+} 
+
+.swiper-pagination-bullet {
+    flex: 0 0 27px;
+    height: 27px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px 0;
+    background-color: transparent;
+
+    &::after {
+        content: '';
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background-color: #8f8f8f;
+        transition: background-color 0.3s ease;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 1px solid $orangeColor;
+        transition: all 0.3s ease;
+        transform: scale(0);
+    }
+}
+
+.swiper-pagination-bullet-active {
+    &::after {
+        background-color: $orangeColor;
+    }
+
+    &::before {
+        transform: scale(1);
+    }
+}
+

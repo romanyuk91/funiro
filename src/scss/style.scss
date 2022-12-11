@@ -1,0 +1,137 @@
+// Libs
+@import "../../node_modules/swiper/swiper-bundle";
+
+// Components
+
+@import "vars";
+@import "fonts";
+@import "icons";
+@import "mixins";
+@import "settings";
+@import "./components/header";
+@import "./components/footer";
+@import "./components/hero";
+@import "./components/advantages";
+@import "./components/products";
+@import "./components/rooms";
+@import "./components/tips";
+@import "./components/furniture";
+
+// Базовые классы
+
+body {
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+    color: $mainColor;
+    overflow-x: hidden;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 0 15px;
+    max-width: $maxWidthContainer + px;
+}
+
+// .hidden {
+//     display: none!important;
+// }
+
+// .active {
+//     display: flex!important;
+// }
+
+.no-scroll {
+    overflow: hidden;
+}
+
+.mobile-nav-btn {
+    display: none;
+}
+
+// Общие стили
+
+.section-title {
+    @include adaptive-value ("font-size", 40, 24, 1);
+    font-weight: 700;
+    line-height: 120%;
+    text-align: center;
+    color: $mainColor;
+}
+
+.footer-title {
+    @include adaptive-value ("font-size", 24, 16, 1);
+    font-weight: 700;
+    line-height: 120%;
+    color: #000000;
+}
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+
+    &-white {
+      color: $orangeColor;
+      background-color: #fff;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      &:hover,
+      &:focus,
+      &:active {
+        color: #fff;
+        background-color: $orangeColor;
+      }
+    }
+    &:hover,
+    &:focus,
+    &:active {
+        animation-name: wobble-horizontal;
+        animation-duration: 1s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: 1;
+    }
+
+    @keyframes wobble-horizontal {
+        16.65% {
+          transform: translateX(8px);
+        }
+        33.3% {
+          transform: translateX(-6px);
+        }
+        49.95% {
+          transform: translateX(4px);
+        }
+        66.6% {
+          transform: translateX(-2px);
+        }
+        83.25% {
+          transform: translateX(1px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,48 @@
+.advantages {
+    @include adaptive-value("padding-top", 88, 30, 1);
+    @include adaptive-value("padding-bottom", 88, 30, 1);
+
+    &-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    &-item {
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: 85px 1fr;
+        padding: 15px 0;
+
+        @media (max-width: $md2) {
+            min-width: 280px;
+        }
+        @media (max-width: $md3) {
+            grid-template-columns: auto 1fr;
+        }
+
+        &-icon {
+            grid-row: span 2;
+            align-self: center;
+            text-align: center;
+            @media (max-width: $md3) {
+                padding-right: 15px;
+            }
+        }
+
+        &-title {
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 150%;
+            color: $mainColor;
+            margin-bottom: 2px;
+        }
+
+        &-text {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 150%;
+            color: $grayColor;
+        }
+    }
+}

@@ -1,0 +1,114 @@
+@mixin burger {
+    $burgerWidth: 30px;
+    $burgerHeight: 30px;
+    $burgerLineHeight: 2px;
+  
+    position: relative;
+    border: none;
+    padding: 0;
+    width: $burgerWidth;
+    height: $burgerHeight;
+    color: #000;
+    background-color: transparent;
+    cursor: pointer;
+  
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: $burgerLineHeight;
+      background-color: currentColor;
+      transition: transform 0.3s ease-in-out, top 0.3s ease-in-out;
+    }
+  
+    &::before {
+      top: 0;
+    }
+  
+    &::after {
+      top: calc(100% - $burgerLineHeight);
+    }
+  
+    &__line {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: $burgerLineHeight;
+      background-color: currentColor;
+      transform: translateY(-50%);
+      transition: transform 0.3s ease-in-out;
+    }
+  
+    &--active {
+      &::before {
+        top: 50%;
+        transform: rotate(45deg);
+        transition: transform 0.3s ease-in-out, top 0.3s ease-in-out;
+      }
+  
+      &::after {
+        top: 50%;
+        transform: rotate(-45deg);
+        transition: transform 0.3s ease-in-out, top 0.3s ease-in-out;
+      }
+  
+      .burger__line {
+        transform: scale(0);
+        transition: transform 0.3s ease-in-out;
+      }
+    }
+  }
+
+  // =======================================================================================================
+
+  @mixin menu-icon {
+        display: none;
+        
+        @media (max-width: $md3) {
+            display: block;
+            @include adaptive-value("margin-left", 32, 15, 1);
+            position: relative;
+            flex: 0 0 30px;
+            height: 18px;
+            cursor: pointer;
+            z-index: 5;
+        
+        span {
+            transition: all 0.3s ease 0s;
+            top: calc(50% - 1px);
+            left: 0px;
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #000;
+            pointer-events: none;
+            
+            &:first-child {
+              top: 0px;
+            }
+
+            &:last-child {
+              top: auto;
+              bottom: 0px;
+            }
+        }
+        
+        &.active {
+
+        span {
+          transform: scale(0);
+              &:first-child {
+                  transform: rotate(-45deg);
+                  top: calc(50% - 1px);
+          }
+              &:last-child {
+                  transform: rotate(45deg);
+                  bottom: calc(50% - 1px);
+          }
+        }
+      }
+    }
+  }
